@@ -8,23 +8,25 @@ public class Contrasenia {
 	private String nuevaClave;
 	private Date fechaCreacion;
 
-	private void cambiarClave(String viejaClave, String nuevaClave){
+	public void cambiarClave(String viejaClave, String nuevaClave) throws Exception{
 		if(this.clave.equals(viejaClave) && validar(nuevaClave)){
 			this.clave = nuevaClave;
 			return;
+		}else{
+			throw new Exception("Clave inválida.");
 		}
-		return;
 	}
 	
-	//TODO ver si la clave esta vencida
-	public boolean estaVencida(){
-		return false;
-	}
-	
-	//TODO validacion de formato de clave
-	private boolean validar(String clave){
-		return true;
-	}
+	//ver si la clave esta vencida
+		public boolean estaVencida(){
+			long diff = (new Date().getTime() - fechaCreacion.getTime()) / (1000 * 60 * 60 * 24);
+			return diff > 180;
+		}
+		
+		//TODO validacion de formato de clave
+		private boolean validar(String clave){
+			return true;
+		}
 
 	public String getNuevaClave() {
 		return nuevaClave;

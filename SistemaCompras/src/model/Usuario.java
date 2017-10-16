@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
@@ -10,16 +11,31 @@ public class Usuario {
 	private String domicilio;
 	private String mail;
 	private String nombreUsuario;
-//	private CtaCorriente ctaCorriente;
+	private CtaCorriente ctaCorriente;
 	private Reputacion reputacionCompra;
 	private Reputacion reputacionVenta;
 	private List<Operacion> operaciones;
 	private Contrasenia contrasenia;
 	
 	
+	public Usuario(String nombre, String apellido, String dni, String domicilio, String mail, String nombreUsuario, CtaCorriente ctaCorriente, Reputacion reputacionCompra, Reputacion reputacionVenta, Contrasenia contrasenia, List<Operacion> operaciones)
+	{
+		this.setNombre(nombre);
+		this.setApellido(apellido);
+		this.setDni(dni);
+		this.setDomicilio(domicilio);
+		this.setMail(mail);
+		this.setNombreUsuario(nombreUsuario);
+		this.setCtaCorriente(ctaCorriente.equals(null) ? new CtaCorriente() : ctaCorriente);
+		this.setReputacionCompra(reputacionCompra.equals(null) ? new Reputacion() : reputacionCompra);
+		this.setReputacionVenta(reputacionVenta.equals(null) ? new Reputacion () : reputacionVenta);
+		this.setContrasenia(contrasenia.equals(null) ? new Contrasenia() : contrasenia);
+		this.setOperaciones(operaciones.equals(null) ? new ArrayList<Operacion>() : operaciones);
+	}
+	
 	public boolean sosElUsuario(Usuario usuario){
-		//ver esta validacion xq no es bueno haerla x dni
-		return (this.getDni().equals(usuario.getDni()));
+		//Validamos DNI, NOMBRE Y APELLIDO
+		return (this.getDni().equals(usuario.getDni())) && this.getNombre().toLowerCase().equals(usuario.getNombre().toLowerCase()) && this.getApellido().toLowerCase().equals(usuario.getApellido().toLowerCase());
 	}
 	
 	public String getNombre() {
@@ -83,6 +99,14 @@ public class Usuario {
 
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+
+	public CtaCorriente getCtaCorriente() {
+		return ctaCorriente;
+	}
+
+	public void setCtaCorriente(CtaCorriente ctaCorriente) {
+		this.ctaCorriente = ctaCorriente;
 	}
 		
 }

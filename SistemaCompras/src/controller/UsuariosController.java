@@ -16,6 +16,39 @@ public class UsuariosController {
 		this.usuarios = usuarios;
 	}
 	
+	public void altaUsuario(Usuario usuario) throws Exception{
+		for(Usuario item : this.usuarios)
+		{
+			if(item.sosElUsuario(usuario)){
+				throw new Exception("Usuario ya existente.");
+			}
+		}
+		this.usuarios.add(usuario);
+	}
 	
-	
+	public void bajaUsuario(Usuario usuario)
+	{
+		for(Usuario item : this.usuarios)
+		{
+			if(item.sosElUsuario(usuario)){
+				this.usuarios.remove(item);
+				break;
+			}
+		}
+	}
+
+	public void modificarUsuario(Usuario usuario)
+	{
+		for(Usuario item : this.usuarios)
+		{
+			if(item.sosElUsuario(usuario)){
+				item.setDomicilio(usuario.getDomicilio());
+				item.setMail(usuario.getMail());
+				break;
+			}
+		}
+	}
+
+
+
 }
