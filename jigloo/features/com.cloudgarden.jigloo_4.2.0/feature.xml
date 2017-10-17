@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.cloudgarden.jigloo"
+      label="Jigloo SWT/Swing GUI Builder"
+      version="4.2.0"
+      provider-name="CloudGarden.com"
+      os="linux,macosx,solaris,win32"
+      ws="carbon,gtk,win32"
+      nl="en"
+      image="jigloo.gif">
+
+   <description url="http://www.cloudgarden.com/jigloo">
+      The Jigloo SWT/Swing GUI Builder manages all features of round-trip
+GUI design in a WYSIWIG editor using either the Swing or SWT toolkits.
+   </description>
+
+   <copyright>
+      Copyright 2004 - 2007 CloudGarden.com. All rights reserved.
+   </copyright>
+
+   <license url="http://www.cloudgarden.com/jigloo/license.html">
+      CloudGarden.com SOFTWARE USER AGREEMENT
+
+28th Feb, 2005
+
+The Jigloo SWT/Swing GUI Builder is free for NON-COMMERCIAL use only.
+
+&quot;Commercial use&quot; is defined as use by an employee of a  business, 
+corporation or institute (including academic institutes) to carry out
+the work for which they are employed. (Note: students of academic
+institutes are NOT defined as commercial users, unless they are being
+employed by their institute to carry out work which requires Jigloo).
+
+If (after a successful evaluation) Jigloo is used for the work of any 
+business, corporation or institute, a Professional License must be 
+purchased for each employee using Jigloo. (Please visit 
+http://www.cloudgarden.com for details and current license costs).
+
+The code must not be disassembled or reverse engineered, or copied
+in any way.
+
+This software is provided AS IS and any express or implied warranties,
+including, but not limited to, the implied warranties of merchantability
+and fitness for a particular purpose are disclaimed.
+   </license>
+
+   <url>
+      <update label="CloudGarden update site" url="http://cloudgarden1.com/update-site/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="org.eclipse.jdt.launching"/>
+      <import plugin="org.eclipse.jdt.debug"/>
+      <import plugin="org.eclipse.jdt.debug.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.ui.views"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.help"/>
+      <import plugin="org.eclipse.text"/>
+   </requires>
+
+   <plugin
+         id="com.cloudgarden.jigloo"
+         download-size="0"
+         install-size="0"
+         version="4.2.0"/>
+
+</feature>

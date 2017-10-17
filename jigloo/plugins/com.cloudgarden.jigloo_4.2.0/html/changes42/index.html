@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Jigloo 4.2 new features</title>
+</head>
+<body>
+<font style="font-family: Helvetica,Arial,sans-serif;"><u><big><b><br>
+<big>What's new in Jigloo version 4.2</big></b></big></u><u><big><b><big><br>
+<br>
+</big></b></big></u></font>
+<table
+ style="text-align: left; width: 100%; font-family: Helvetica,Arial,sans-serif;"
+ border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td colspan="2" style="vertical-align: top; width: 30%;"><small><big><span
+ style="font-weight: bold;">Performance improvements<br>
+      </span></big></small>
+      <hr style="width: 100%; height: 2px;">
+      <div style="margin-left: 40px;"><small><big><span
+ style="font-weight: bold;"></span></big> Parsing is faster</small><br>
+      <small>A large memory leak (when re-parsing code or closing
+editors) is fixed. This should remedy the problem of Jigloo responding
+very slowly.<span style="font-family: Helvetica,Arial,sans-serif;"></span></small><br>
+      <small>Context menus appear more quickly.</small><br>
+      </div>
+      <small><br>
+      <br>
+      <span style="font-weight: bold;"></span></small><small><span
+ style="font-weight: bold;"><big>MigLayout supported for Swing forms<br>
+      </big></span></small>
+      <hr style="width: 100%; height: 2px;">
+      <div style="margin-left: 40px;"><small>For information on
+MigLayout, see it's <a href="http://www.miglayout.com/">website</a>.
+It is designed to be a programmer-friendly layout with constraints
+which permit a huge range of behaviours.<br>
+In Jigloo it is represented as a grid-based layout, and components can
+be moved around the grid and set to span cells like in the other
+grid-based layouts (ie, GridBag, Table, Form).<br>
+      </small><small>In addition you have the ability to manually edit
+constraints, allowing the flexibility of
+MigLayout to be used fully.</small><br>
+      <small><br>
+      <img style="width: 537px; height: 437px;" alt=""
+ src="migLayout.PNG"><br>
+      </small><br>
+      <small><span style="font-weight: bold;"></span></small></div>
+      <small><span style="font-weight: bold;"><br>
+      </span></small><small><span style="font-weight: bold;"><big>Grid-type
+layout (Form, GridBag and Table) improvements</big></span></small>
+      <hr style="width: 100%; height: 2px;">
+      <div style="margin-left: 40px;"><small>You have more options in
+the right-click menu for setting row/column constraints<br>
+      <br>
+      </small><small>For TableLayout you can set size to "preferred",
+"fill" or "min".</small><small><span style="font-weight: bold;"></span></small><br>
+      <small><span style="font-weight: bold;"></span></small></div>
+      <div style="margin-left: 40px;"><small><img
+ style="width: 210px; height: 278px;" alt="" src="tableLayoutMenu.PNG"></small><br>
+      </div>
+      <small><br>
+      </small>
+      <div style="margin-left: 40px;"><small>And for Table, Form and
+GridBag you can set the size to one of a set of values defined in the
+preferences.</small><br>
+      </div>
+      <div style="margin-left: 40px;"><small><img
+ style="width: 648px; height: 605px;" alt="" src="presetSizePrefs.PNG"
+ align="top"></small><br>
+      </div>
+      <small><br>
+      </small><small><font style="font-family: tahoma;"><span
+ style="font-weight: bold;"><big
+ style="font-family: Helvetica,Arial,sans-serif;">Support for generics</big><br>
+      </span></font></small>
+      <hr style="width: 100%; height: 2px;"><small><font
+ style="font-family: tahoma;"><span style="font-weight: bold;"></span></font></small>
+      <div style="margin-left: 40px;"><small>Jigloo now parses Java 1.5
+generics expressions.</small><br>
+      </div>
+      <small><span style="font-weight: bold;"><br>
+      <br>
+      <big>Component Palette improvements</big></span><br>
+      </small>
+      <hr style="width: 100%; height: 2px;">
+      <div style="margin-left: 40px;"><small>Export improved - only the
+palettes and/or components selected are exported.</small><br>
+      <small>Import improved - exported palettes/components will be
+merged with the existing palettes.</small><br>
+      <small>Double-click to edit a bean or palette</small><br>
+      <small>When adding beans from a library, the library is added to
+the current project.</small><br>
+      </div>
+      <small><span style="font-weight: bold;"><br>
+      <br>
+      </span></small><small><big><span style="font-weight: bold;">Inheritance
+improvement</span></big><br>
+      </small>
+      <hr style="width: 100%; height: 2px;">
+      <div style="margin-left: 40px;"><small>Protected fields and
+methods from super class are accessible in
+sub-classes (before Jigloo could only handle public inherited fields
+and methods).<br>
+      <br>
+      </small></div>
+      <small><span style="font-weight: bold;"></span></small><br>
+      <small><big><span style="font-weight: bold;">"Limited-parsing"
+improvement</span></big><br>
+      </small>
+      <hr style="width: 100%; height: 2px;">
+      <div style="margin-left: 40px;"><small>When you hit the
+"parsing/no-parsing" button in the Outline view, or hit Ctrl+Alt+P then
+Jigloo toggles between two modes:<br>
+      <br>
+1) "Parse after delay" mode - parses all manual code changes after a
+user-defined delay of a few seconds<br>
+      <br>
+2) "Parse-when-needed" mode - does not parse any manual code changes
+until the user clicks in the GUI editor, the "GUI properties" editor or
+the "GUI Outline" view.<br>
+      <br>
+      <img style="width: 185px; height: 54px;" alt=""
+ src="parseMode.PNG"><br>
+      <br>
+Option #2 might be prefereable to anyone making any manual code changes
+since even after the code has been re-parsed Jigloo stays in the "parse
+when needed" mode.<br>
+      </small></div>
+      <br>
+      <small><big><span style="font-weight: bold;">Global bean icon and
+BeanInfo folders</span></big><br>
+      </small>
+      <hr style="width: 100%; height: 2px;">
+      <div style="margin-left: 40px;"><small><span
+ style="font-family: Courier New,Courier,monospace;"><span
+ style="font-family: Helvetica,Arial,sans-serif;">The "Component
+palette/custom classes" preference page (see below) has been enhanced
+to allow you to define a global folder to hold bean icons, and another
+to hold jars containing BeanInfo classes.<br>
+      <br>
+      </span></span></small><small><span
+ style="font-family: Courier New,Courier,monospace;"><img
+ style="width: 653px; height: 605px;" alt="" src="globalBeanDirs.PNG"></span></small><small><br>
+      <br>
+      <br>
+The "bean icon" folder allows custom components to have their own icons
+in Jigloo without having to have their own BeanInfo class.<br>
+      </small><small>Icons must be gifs, and must be named after the
+class they represent and placed in a folder structure that matches the
+package name. <br>
+Eg, if your class was examples.swing.flowershop.FlowerPanel then the
+icon would be called <span
+ style="font-family: Courier New,Courier,monospace;">FlowerPanel.gif</span>
+and would be placed in the folder <span
+ style="font-family: Courier New,Courier,monospace;">&lt;global bean
+icon folder&gt;/examples/swing/flowershop<br>
+      <br>
+      <img style="width: 251px; height: 262px;" alt=""
+ src="globalBeanDirs2.PNG"><br>
+      <br>
+      <span style="font-family: Helvetica,Arial,sans-serif;">In the
+example shown above, the "bean icon" folder is in one of the projects,
+but it is referenced as an absolute location so that it can be used
+from any project.</span><br>
+      <br>
+      <span style="font-family: Helvetica,Arial,sans-serif;">You can
+also define a global "bean info" folder which is where you can put the
+jars that hold your BeanInfo classes.<br>
+Jigloo will not search sub-folders, but it will include all jar or zip
+files in the main folder.<br>
+      </span></span></small></div>
+      <small><span style="font-weight: bold;"><br>
+      </span></small>
+      <hr style="width: 100%; height: 2px;"><small><span
+ style="font-weight: bold;"><br>
+      </span><span style="font-weight: bold;"></span><big><span
+ style="font-weight: bold;">Several bugs fixed<br>
+      </span></big></small>
+      <div style="margin-left: 40px;"><small><big><small>As usual,
+several bugs have been fixed in this version.</small><span
+ style="font-weight: bold;"></span></big></small><br>
+      <small><big><span style="font-weight: bold;"></span></big></small></div>
+      <small><big><span style="font-weight: bold;"><br>
+      </span></big></small></td>
+    </tr>
+  </tbody>
+</table>
+<small style="font-family: Helvetica,Arial,sans-serif;"><font
+ style="font-family: tahoma;"><br>
+</font></small>
+<br style="font-family: Helvetica,Arial,sans-serif;">
+</body>
+</html>
