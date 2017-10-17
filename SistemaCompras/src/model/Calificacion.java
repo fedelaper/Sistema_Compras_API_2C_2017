@@ -33,5 +33,12 @@ public class Calificacion {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+	public Calificacion(Usuario usuarioCalificador, Operacion operacionCalificada, String observaciones, Date fecha) {
+		super();
+		UsuarioCalificador = usuarioCalificador;
+		this.operacionCalificada = operacionCalificada;
+		this.observaciones = observaciones;
+		this.fecha = fecha;
+	}
 	
 }

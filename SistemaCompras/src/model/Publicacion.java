@@ -33,6 +33,13 @@ public class Publicacion extends Operacion {
 	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
 	}
+
+	public Publicacion(float precio, Producto producto, Servicio servicio) {
+		super();
+		this.precio = precio;
+		this.producto = producto;
+		this.servicio = servicio;
+	}
 	
 	
 }

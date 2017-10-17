@@ -15,5 +15,10 @@ public class Comision {
 	public void setContratacion(Contratacion contratacion) {
 		this.contratacion = contratacion;
 	}
+
+	public Comision(Contratacion contratacion) {
+		super();
+		this.contratacion = contratacion;
+	}
 	
 }

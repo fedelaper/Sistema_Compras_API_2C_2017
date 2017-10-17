@@ -108,5 +108,22 @@ public class Usuario {
 	public void setCtaCorriente(CtaCorriente ctaCorriente) {
 		this.ctaCorriente = ctaCorriente;
 	}
+
+	public Usuario(String nombre, String apellido, String dni, String domicilio, String mail, String nombreUsuario,
+			CtaCorriente ctaCorriente, Reputacion reputacionCompra, Reputacion reputacionVenta,
+			List<Operacion> operaciones, Contrasenia contrasenia) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.domicilio = domicilio;
+		this.mail = mail;
+		this.nombreUsuario = nombreUsuario;
+		this.ctaCorriente = ctaCorriente;
+		this.reputacionCompra = reputacionCompra;
+		this.reputacionVenta = reputacionVenta;
+		this.operaciones = operaciones;
+		this.contrasenia = contrasenia;
+	}
 		
 }

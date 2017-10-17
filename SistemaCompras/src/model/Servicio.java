@@ -17,6 +17,11 @@ public class Servicio {
 	public void setComision(Comision comision) {
 		this.comision = comision;
 	}
+	public Servicio(ItemServicio itemServicio, Comision comision) {
+		super();
+		this.itemServicio = itemServicio;
+		this.comision = comision;
+	}
 	
 	
 

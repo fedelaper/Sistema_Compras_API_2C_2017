@@ -52,5 +52,16 @@ public class Contrasenia {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
+
+	public Contrasenia(String clave, String nuevaClave, Date fechaCreacion) {
+		super();
+		this.clave = clave;
+		this.nuevaClave = nuevaClave;
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Contrasenia() {
+		super();
+	}
 	
 }

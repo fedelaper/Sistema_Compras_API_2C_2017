@@ -17,6 +17,11 @@ public class Producto {
 	public void setGtiaExtendida(GtiaExtendida gtiaExtendida) {
 		this.gtiaExtendida = gtiaExtendida;
 	}
+	public Producto(ItemProducto itemProducto, GtiaExtendida gtiaExtendida) {
+		super();
+		this.itemProducto = itemProducto;
+		this.gtiaExtendida = gtiaExtendida;
+	}
 	
 	
 	

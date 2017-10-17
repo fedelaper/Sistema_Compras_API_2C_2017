@@ -80,4 +80,15 @@ public class Subasta extends Operacion {
 		this.usuariosInteresados = usuariosInteresados;
 	}
 
+	public Subasta(int diasVigencia, float precioInicial, float precioActual, float precioMin, Usuario mayorOfertador,
+			List<Usuario> usuariosInteresados) {
+		super();
+		this.diasVigencia = diasVigencia;
+		this.precioInicial = precioInicial;
+		this.precioActual = precioActual;
+		this.precioMin = precioMin;
+		this.mayorOfertador = mayorOfertador;
+		this.usuariosInteresados = usuariosInteresados;
+	}
+
 }

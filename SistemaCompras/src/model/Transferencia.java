@@ -17,6 +17,11 @@ public class Transferencia extends Venta{
 	public void setCbuDestino(String cbuDestino) {
 		this.cbuDestino = cbuDestino;
 	}
+	public Transferencia(String cbuOrigen, String cbuDestino) {
+		super();
+		this.cbuOrigen = cbuOrigen;
+		this.cbuDestino = cbuDestino;
+	}
 	
 	
 }

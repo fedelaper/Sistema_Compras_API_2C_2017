@@ -11,5 +11,10 @@ public class Tarjeta extends Venta{
 	public void setNumTarjeta(String numTarjeta) {
 		this.numTarjeta = numTarjeta;
 	}
+
+	public Tarjeta(String numTarjeta) {
+		super();
+		this.numTarjeta = numTarjeta;
+	}
 	
 }

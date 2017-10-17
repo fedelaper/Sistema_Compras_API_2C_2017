@@ -24,6 +24,15 @@ public class CtaCorriente {
 	public void setSaldo(float saldo) {
 		this.saldo = saldo;
 	}
+	public CtaCorriente(String cbu, Usuario titular, float saldo) {
+		super();
+		this.cbu = cbu;
+		this.titular = titular;
+		this.saldo = saldo;
+	}
+	public CtaCorriente() {
+		super();
+	}
 	
 	
 }
