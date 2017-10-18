@@ -23,6 +23,14 @@ public class Producto {
 		this.gtiaExtendida = gtiaExtendida;
 	}
 	
-	
+	@Override
+    public boolean equals(Object o){
+		//Sobreescribo metodo equals para cuando se evalúe dentro del método contains de una lista, tome el criterio que quiero.
+        if(o instanceof Producto){
+            Producto toCompare = (Producto) o;
+            return itemProducto.getDetalle().equals(toCompare.itemProducto.getDetalle());
+        }
+        return false;
+    }
 	
 }

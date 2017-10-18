@@ -4,16 +4,19 @@ import java.util.Date;
 
 public class Calificacion {
 
-	private Usuario UsuarioCalificador;
+	private Usuario usuarioCalificador;
 	private Operacion operacionCalificada;
 	private String observaciones;
 	private Date fecha;
 	
+	//El valor de la calificación puede ser de 1 a 10
+	private int valor; 
+	
 	public Usuario getUsuarioCalificador() {
-		return UsuarioCalificador;
+		return usuarioCalificador;
 	}
 	public void setUsuarioCalificador(Usuario usuarioCalificador) {
-		UsuarioCalificador = usuarioCalificador;
+		this.usuarioCalificador = usuarioCalificador;
 	}
 	public Operacion getOperacionCalificada() {
 		return operacionCalificada;
@@ -35,10 +38,16 @@ public class Calificacion {
 	}
 	public Calificacion(Usuario usuarioCalificador, Operacion operacionCalificada, String observaciones, Date fecha) {
 		super();
-		UsuarioCalificador = usuarioCalificador;
+		this.usuarioCalificador = usuarioCalificador;
 		this.operacionCalificada = operacionCalificada;
 		this.observaciones = observaciones;
 		this.fecha = fecha;
+	}
+	public int getValor() {
+		return valor;
+	}
+	public void setValor(int valor) {
+		this.valor = valor;
 	}
 	
 }

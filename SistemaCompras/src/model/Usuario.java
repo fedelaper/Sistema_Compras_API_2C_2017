@@ -125,5 +125,15 @@ public class Usuario {
 		this.operaciones = operaciones;
 		this.contrasenia = contrasenia;
 	}
+	
+	@Override
+	public boolean equals(Object o){
+		//Sobreescribo metodo equals para cuando se evalúe dentro del método contains de una lista, tome el criterio que quiero.
+        if(o instanceof Usuario){
+        	Usuario toCompare = (Usuario) o;
+        	return sosElUsuario(toCompare);
+        }
+        return false;
+	}
 		
 }

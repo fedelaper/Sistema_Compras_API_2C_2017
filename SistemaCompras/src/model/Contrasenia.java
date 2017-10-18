@@ -6,7 +6,7 @@ public class Contrasenia {
 
 	private String clave;
 	private Date fechaCreacion;
-	
+
 	public Contrasenia(String clave, Date fechaCreacion) {
 		super();
 		this.clave = clave;
