@@ -23,6 +23,15 @@ public class Servicio {
 		this.comision = comision;
 	}
 	
+	@Override
+    public boolean equals(Object o){
+		//Sobreescribo metodo equals para cuando se evalúe dentro del método contains de una lista, tome el criterio que quiero.
+        if(o instanceof Servicio){
+        	Servicio toCompare = (Servicio) o;
+            return itemServicio.getDetalle().equals(toCompare.itemServicio.getDetalle());
+        }
+        return false;
+    }
 	
 
 	
