@@ -99,6 +99,17 @@ public class UsuariosController {
 		}
 	}
 
+	public void altaServicio(Servicio servicio){
+		if(!this.servicios.contains(servicio)){
+			this.servicios.add(servicio);
+		}
+	}
+	
+	public void bajaServicio(Servicio servicio){
+		if(this.servicios.contains(servicio)){
+			this.servicios.remove(servicio);
+		}
+	}
 
 
 }
