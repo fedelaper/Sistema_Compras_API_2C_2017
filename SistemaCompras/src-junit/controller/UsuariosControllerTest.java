@@ -3,9 +3,10 @@ package controller;
 import org.junit.Assert;
 import org.junit.Test;
 
-import model.GtiaExtendida;
-import model.ItemProducto;
-import model.Producto;
+import com.uade.grupo9.controller.UsuariosController;
+import com.uade.grupo9.model.GtiaExtendida;
+import com.uade.grupo9.model.ItemProducto;
+import com.uade.grupo9.model.Producto;
 
 public class UsuariosControllerTest {
 

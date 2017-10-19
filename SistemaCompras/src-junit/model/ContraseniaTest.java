@@ -6,11 +6,11 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Test;
 
-import model.Contrasenia;
+import com.uade.grupo9.model.Contrasenia;
 
 public class ContraseniaTest {
 
-private static final String MENSAJE_ERROR_CLAVE_INVALIDA = "Clave inválida";
+private static final String MENSAJE_ERROR_CLAVE_INVALIDA = "Clave invï¿½lida";
 	
 	@Test
 	public void testContraseniaNOK() {
