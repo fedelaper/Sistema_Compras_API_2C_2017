@@ -6,10 +6,9 @@ public class Banco extends EntidadFinanciera {
 	public Banco(String nombre) {
 		this.nombre = nombre;
 	}
-	@Override
-	public void iniciarTransaccion(Usuario originante, Usuario destinatario, Double monto) {
-		// TODO Auto-generated method stub
-		
+	
+	public String nombre() {
+		return nombre;
 	}
 
 }

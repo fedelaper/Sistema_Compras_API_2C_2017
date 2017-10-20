@@ -24,12 +24,6 @@ public abstract class Venta {
 	public void setMontoVenta(float montoVenta) {
 		this.montoVenta = montoVenta;
 	}
-	public Venta() {
-		super();
-		this.comprador = comprador;
-		this.vendedor = vendedor;
-		this.montoVenta = montoVenta;
-	}
 	public Venta(Usuario comprador, Usuario vendedor, float montoVenta) {
 		super();
 		this.comprador = comprador;

@@ -12,9 +12,10 @@ public class Tarjeta extends Venta{
 		this.numTarjeta = numTarjeta;
 	}
 
-	public Tarjeta(String numTarjeta) {
-		super();
+	public Tarjeta(Usuario comprador, Usuario vendedor, float montoVenta, String numTarjeta) {
+		super(comprador, vendedor, montoVenta);
 		this.numTarjeta = numTarjeta;
 	}
+	
 	
 }
