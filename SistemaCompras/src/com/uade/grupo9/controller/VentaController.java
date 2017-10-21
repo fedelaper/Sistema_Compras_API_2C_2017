@@ -24,7 +24,9 @@ public class VentaController implements Observer{
 	private void getBancos() {
 		bancos.add(new Banco("Itau"));
 		bancos.add(new Banco("Galicia"));
-		bancos.stream().forEach(b -> b.agregar(this));
+		for (Banco b : bancos) {
+			b.agregar(this);
+		}
 	}
 	
 	public VentaController get() {
@@ -35,9 +37,9 @@ public class VentaController implements Observer{
 	}
 	
 	public void iniciarTransferencia(Transferencia venta) {
-		bancos.stream().forEach(b -> {
+		for (Banco b : bancos) {
 			b.iniciarTransaccion(venta.getComprador(), venta.getVendedor(), venta.getMontoVenta());
-		});
+		}
 	}
 	
 	public void iniciarTransferencia(Tarjeta venta) {

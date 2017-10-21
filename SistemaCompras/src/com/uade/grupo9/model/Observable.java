@@ -7,7 +7,9 @@ public class Observable {
 	private List<Observer> observers = new ArrayList<>();
 
 	public void notificar() {
-		observers.stream().forEach(Observer::notificar);
+		for (Observer observer : observers) {
+			observer.notificar();
+		}
 	}
 
 	public void agregar(Observer observer) {
