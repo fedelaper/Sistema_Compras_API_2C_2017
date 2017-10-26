@@ -1,8 +1,10 @@
 package com.uade.grupo9.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.uade.grupo9.model.Contrasenia;
 import com.uade.grupo9.model.Producto;
 import com.uade.grupo9.model.Servicio;
 import com.uade.grupo9.model.Usuario;
@@ -111,8 +113,16 @@ public class UsuariosController {
 		}
 	}
 	
-	public Boolean validarContrasenia(String clave){
+	public boolean validarFormatoContraseniaUsuario(String clave){
 		return clave.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,20}$");
+	}
+	
+	/*
+	 * True si no esta expirada. Caso contrario, false.
+	 * */
+	public boolean validarExpiracionContraseniaUsuario(Contrasenia contrasenia){
+		long diff = (new Date().getTime() - contrasenia.getFechaCreacion().getTime()) / (1000 * 60 * 60 * 24);
+		return diff < 180;
 	}
 
 

@@ -105,7 +105,7 @@ public class LoginView extends javax.swing.JFrame {
 					DispatcherViewSubmitButton.setText("Ingresar");
 					DispatcherViewSubmitButton.addActionListener((ActionEvent event) -> {
 					    UsuariosController uController = new UsuariosController();
-					    if(!uController.validarContrasenia(DispatcherViewPassword.getText())){
+					    if(!uController.validarFormatoContraseniaUsuario(DispatcherViewPassword.getText())){
 					    	JOptionPane.showMessageDialog(null, "Contraseña inválida. La misma debe cumplir los siguientes requisitos: \n - Tener de 8 a 20 caracteres. \n - Tener al menos un carácter numérico y al menos un carácter mayúscula");
 					    }
 					});
