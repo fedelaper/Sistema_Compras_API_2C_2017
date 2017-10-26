@@ -110,6 +110,10 @@ public class UsuariosController {
 			this.servicios.remove(servicio);
 		}
 	}
+	
+	public Boolean validarContrasenia(String clave){
+		return clave.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,20}$");
+	}
 
 
 }
