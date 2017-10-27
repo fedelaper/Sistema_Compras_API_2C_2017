@@ -15,6 +15,7 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.uade.grupo9.controller.LoginController;
 import com.uade.grupo9.controller.UsuariosController;
 
 import javax.swing.SwingUtilities;
@@ -104,8 +105,8 @@ public class LoginView extends javax.swing.JFrame {
 					jPanel1.add(DispatcherViewSubmitButton);
 					DispatcherViewSubmitButton.setText("Ingresar");
 					DispatcherViewSubmitButton.addActionListener((ActionEvent event) -> {
-					    UsuariosController uController = new UsuariosController();
-					    if(!uController.validarFormatoContraseniaUsuario(DispatcherViewPassword.getText())){
+					    LoginController loginController = new LoginController();
+					    if(!loginController.validarFormatoContraseniaUsuario(DispatcherViewPassword.getText())){
 					    	JOptionPane.showMessageDialog(null, "Contraseña inválida. La misma debe cumplir los siguientes requisitos: \n - Tener de 8 a 20 caracteres. \n - Tener al menos un carácter numérico y al menos un carácter mayúscula");
 					    }
 					});

@@ -61,45 +61,6 @@ public class UsuariosControllerTest {
 		Assert.assertTrue(uController.getProductos().size() == 0);
 	}
 	
-	@Test
-	public void testContraseniaNOK() {
-		UsuariosController uController = new UsuariosController();
-		Assert.assertFalse(uController.validarFormatoContraseniaUsuario("claveinvalida"));
-	}
 	
-	@Test
-	public void testContraseniaOK() {
-		UsuariosController uController = new UsuariosController();
-		Assert.assertTrue(uController.validarFormatoContraseniaUsuario("claveVALIDA1"));
-	}
-
-	@Test
-	public void testContraseniaCorta() {
-		UsuariosController uController = new UsuariosController();
-		Assert.assertFalse(uController.validarFormatoContraseniaUsuario("clavE1"));
-	}
-
-	@Test
-	public void testContraseniaLarga() {
-		UsuariosController uController = new UsuariosController();
-		Assert.assertFalse(uController.validarFormatoContraseniaUsuario("clavE12345654756649849849849849849848"));
-	}
-
-	@Test
-	public void testContraseniaVencida(){
-		Calendar cal = Calendar.getInstance();
-		cal.set(2016, 10, 20);
-		UsuariosController uController = new UsuariosController();
-		Assert.assertFalse(uController.validarExpiracionContraseniaUsuario(new Contrasenia("1234aAaa", cal.getTime())));
-	}
-	
-	@Test
-	public void testContraseniaNoVencida(){
-		Calendar cal = Calendar.getInstance();
-		cal.set(2017, 5, 20);
-		Date date = cal.getTime();
-		UsuariosController uController = new UsuariosController();
-		Assert.assertTrue(uController.validarExpiracionContraseniaUsuario(new Contrasenia("1234aAaa", cal.getTime())));
-	}
 	
 }
