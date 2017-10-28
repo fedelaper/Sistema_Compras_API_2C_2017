@@ -1,9 +1,6 @@
 package com.uade.grupo9.views;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,8 +13,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import com.uade.grupo9.controller.LoginController;
-import com.uade.grupo9.controller.UsuariosController;
-
 import javax.swing.SwingUtilities;
 
 
@@ -108,6 +103,8 @@ public class LoginView extends javax.swing.JFrame {
 					    LoginController loginController = new LoginController();
 					    if(!loginController.validarFormatoContraseniaUsuario(DispatcherViewPassword.getText())){
 					    	JOptionPane.showMessageDialog(null, "Contraseña inválida. La misma debe cumplir los siguientes requisitos: \n - Tener de 8 a 20 caracteres. \n - Tener al menos un carácter numérico y al menos un carácter mayúscula");
+					    }else{
+					    	
 					    }
 					});
 					}
