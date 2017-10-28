@@ -1,11 +1,9 @@
 package com.uade.grupo9.model;
 
-public class Publicacion extends Operacion {
+public abstract class Publicacion <T> extends Operacion {
 
 	private float precio;
-	private Producto producto;
-	private Servicio servicio;
-	
+
 	public void recibirOferta(float monto, Usuario ofertante){
 		
 	}
@@ -18,28 +16,8 @@ public class Publicacion extends Operacion {
 		this.precio = precio;
 	}
 
-	public Producto getProducto() {
-		return producto;
-	}
+	public abstract T getOperacion();
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
+	public abstract void setOperacion(T operacion);
 
-	public Servicio getServicio() {
-		return servicio;
-	}
-
-	public void setServicio(Servicio servicio) {
-		this.servicio = servicio;
-	}
-
-	public Publicacion(float precio, Producto producto, Servicio servicio) {
-		super();
-		this.precio = precio;
-		this.producto = producto;
-		this.servicio = servicio;
-	}
-	
-	
 }

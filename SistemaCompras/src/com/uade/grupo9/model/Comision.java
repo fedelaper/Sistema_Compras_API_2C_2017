@@ -3,7 +3,7 @@ package com.uade.grupo9.model;
 public class Comision {
 
 	private Contratacion contratacion;
-	
+
 	public float calcularComision(){
 		return 0;
 	}

@@ -55,6 +55,5 @@ public class VentaController implements Observer{
 	public void notificar() {
 		confirmarTransferencia();
 	}
-	
-	
+
 }
