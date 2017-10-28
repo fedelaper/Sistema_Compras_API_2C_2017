@@ -25,28 +25,12 @@ public class Contrasenia {
 		}
 	}
 	
-	//ver si la clave esta vencida
-	public boolean estaVencida(){
-		long diff = (new Date().getTime() - fechaCreacion.getTime()) / (1000 * 60 * 60 * 24);
-		return diff > 180;
-	}
-		
-	//validacion de formato de clave
-	private boolean validar(String clave){
-		return clave.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,20}$");
-	}
-	
 	public String getClave() {
 		return clave;
 	}
 
 	public void setClave(String clave) throws Exception {
-		if(validar(clave))
-		{
-			this.clave = clave;
-		}else{
-			throw new Exception("Clave inv�lida");
-		}
+		this.clave = clave;
 	}
 
 	public Date getFechaCreacion() {

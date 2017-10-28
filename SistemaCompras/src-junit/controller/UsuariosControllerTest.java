@@ -1,9 +1,13 @@
 package controller;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.uade.grupo9.controller.UsuariosController;
+import com.uade.grupo9.model.Contrasenia;
 import com.uade.grupo9.model.GtiaExtendida;
 import com.uade.grupo9.model.ItemProducto;
 import com.uade.grupo9.model.Producto;
@@ -56,4 +60,7 @@ public class UsuariosControllerTest {
 		uController.bajaProducto(producto2);
 		Assert.assertTrue(uController.getProductos().size() == 0);
 	}
+	
+	
+	
 }
