@@ -17,6 +17,9 @@ public class Usuario {
 	private List<Operacion> operaciones;
 	private Contrasenia contrasenia;
 	
+	public Usuario(String nombreUsuario){
+		this.setNombreUsuario(nombreUsuario);
+	}
 	
 	public Usuario(String nombre, String apellido, String dni, String domicilio, String mail, String nombreUsuario, CtaCorriente ctaCorriente, Reputacion reputacionCompra, Reputacion reputacionVenta, Contrasenia contrasenia, List<Operacion> operaciones)
 	{
@@ -34,8 +37,8 @@ public class Usuario {
 	}
 	
 	public boolean sosElUsuario(Usuario usuario){
-		//Validamos DNI, NOMBRE Y APELLIDO
-		return (this.getDni().equals(usuario.getDni())) && this.getNombre().toLowerCase().equals(usuario.getNombre().toLowerCase()) && this.getApellido().toLowerCase().equals(usuario.getApellido().toLowerCase());
+		//Validamos sólo el nombre del usuario, que es el dato que tenemos del 'login'
+		return (this.getNombreUsuario().equals(usuario.getNombreUsuario()));
 	}
 	
 	public String getNombre() {

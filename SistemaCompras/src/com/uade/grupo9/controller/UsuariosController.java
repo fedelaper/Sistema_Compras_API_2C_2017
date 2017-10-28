@@ -14,6 +14,7 @@ public class UsuariosController {
 	private List<Usuario> usuarios;
 	private List<Producto> productos;
 	private List<Servicio> servicios;
+	private Usuario currentUser;
 	
 	public UsuariosController(){
 		this.usuarios = new ArrayList<Usuario>();
@@ -111,6 +112,19 @@ public class UsuariosController {
 		if(this.servicios.contains(servicio)){
 			this.servicios.remove(servicio);
 		}
+	}
+
+	public boolean existeUsuario(String nombreUsuario) {
+		Usuario usuario = new Usuario(nombreUsuario);
+		return getUsuarios().contains(usuario);
+	}
+
+	public Usuario getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(String  currentUserName) {
+		this.currentUser = new Usuario(currentUserName);
 	}
 	
 	
