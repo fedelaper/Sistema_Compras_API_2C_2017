@@ -1,25 +1,17 @@
 package com.uade.grupo9.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.uade.grupo9.model.Contrasenia;
-import com.uade.grupo9.model.Producto;
-import com.uade.grupo9.model.Servicio;
 import com.uade.grupo9.model.Usuario;
 
 public class UsuariosController {
 
 	private List<Usuario> usuarios;
-	private List<Producto> productos;
-	private List<Servicio> servicios;
 	private Usuario currentUser;
 	
 	public UsuariosController(){
 		this.usuarios = new ArrayList<Usuario>();
-		this.productos = new ArrayList<Producto>();
-		this.servicios = new ArrayList<Servicio>();
 	}
 	
 	public List<Usuario> getUsuarios() {
@@ -30,21 +22,6 @@ public class UsuariosController {
 		this.usuarios = usuarios;
 	}
 
-	public List<Servicio> getServicios() {
-		return servicios;
-	}
-
-	public void setServicios(List<Servicio> servicios) {
-		this.servicios = servicios;
-	}
-	
-	public List<Producto> getProductos() {
-		return productos;
-	}
-
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
-	}
 	public void altaUsuario(Usuario usuario) throws Exception{
 		
 		if(!this.usuarios.contains(usuario))
@@ -90,29 +67,6 @@ public class UsuariosController {
 		usuario.getCtaCorriente().setSaldo(saldoModificado);
 	}
 	
-	public void altaProducto(Producto producto){
-		if(!this.productos.contains(producto)){
-			this.productos.add(producto);
-		}
-	}
-	
-	public void bajaProducto(Producto producto){
-		if(this.productos.contains(producto)){
-			this.productos.remove(producto);
-		}
-	}
-
-	public void altaServicio(Servicio servicio){
-		if(!this.servicios.contains(servicio)){
-			this.servicios.add(servicio);
-		}
-	}
-	
-	public void bajaServicio(Servicio servicio){
-		if(this.servicios.contains(servicio)){
-			this.servicios.remove(servicio);
-		}
-	}
 
 	public boolean existeUsuario(String nombreUsuario) {
 		Usuario usuario = new Usuario(nombreUsuario);
