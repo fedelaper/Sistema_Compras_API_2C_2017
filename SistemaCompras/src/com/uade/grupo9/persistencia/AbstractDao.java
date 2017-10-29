@@ -1,15 +1,19 @@
 package com.uade.grupo9.persistencia;
 
+import com.uade.grupo9.model.Entidad;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pablo on 22/10/17.
  */
-public abstract class AbstractDao<T> {
+public abstract class AbstractDao<T extends Entidad> {
     private String tabla;
     private ConexionManager conexionManager;
 
@@ -48,16 +52,16 @@ public abstract class AbstractDao<T> {
 
     protected abstract T getFromResultSet(ResultSet resultSet);
 
-    protected T getFromResultSet(ResultSet resultSet, Boolean onlyOne){
-        if(onlyOne){
+    protected T getFromResultSet(ResultSet resultSet, Boolean onlyOne) {
+        if (onlyOne) {
             try {
                 resultSet.next();
                 return getFromResultSet(resultSet);
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
                 return null;
             }
-        }else{
+        } else {
             return getFromResultSet(resultSet);
         }
     }
@@ -87,4 +91,92 @@ public abstract class AbstractDao<T> {
             return null;
         }
     }
+
+    public T save(T entidad) {
+        if (entidad.getId() == null) {
+            return insert(entidad);
+        } else {
+            return update(entidad);
+        }
+    }
+
+    protected T insert(T entidad){
+        Integer id = null;
+        try {
+            id = insert(getComoMapa(entidad));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        entidad.setId(id);
+        return entidad;
+    }
+
+    protected T update(T entidad){
+        try {
+            update(getComoMapa(entidad), entidad.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return entidad;
+    }
+
+    protected abstract Map<String, Object> getComoMapa(T entidad);
+
+    protected Integer insert(Map<String, Object> valores) throws SQLException {
+        StringBuilder query = new StringBuilder("insert into " + tabla + " (");
+        StringBuilder data = new StringBuilder("(");
+        for (String key : valores.keySet()) {
+            query.append(key + ", ");
+            data.append("?,");
+        }
+        query.append(") values (").append(data).append(")");
+
+        PreparedStatement statement = conexionManager.getCon().prepareStatement(query.toString(),
+                Statement.RETURN_GENERATED_KEYS);
+
+        int i = 1;
+        for (Object object : valores.values()) {
+            statement.setObject(i, object);
+            i++;
+        }
+
+        int affectedRows = statement.executeUpdate();
+
+        if (affectedRows == 0) {
+            throw new SQLException("El insert fallo.");
+        }
+
+        try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new SQLException("Fallo el insert, no se obtuvo id.");
+            }
+        }
+
+    }
+
+    protected void update(Map<String, Object> valores, Integer id) throws SQLException {
+        StringBuilder query = new StringBuilder("update " + tabla + " set ");
+        for (String key : valores.keySet()) {
+            query.append(key + "= ? and ");
+        }
+        query.append("where id").append(tabla).append("= ?");
+
+        PreparedStatement statement = getStatement(query.toString());
+
+        int i = 1;
+        for (Object obj : valores.values()) {
+            statement.setObject(i, obj);
+            i++;
+        }
+        statement.setInt(i, id);
+
+        int filas = statement.executeUpdate();
+        if (filas == 0) {
+            throw new SQLException("El update fallo");
+        }
+    }
+
+
 }

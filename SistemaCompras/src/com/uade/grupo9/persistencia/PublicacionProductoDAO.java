@@ -5,6 +5,7 @@ import com.uade.grupo9.model.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 /**
  * Created by pablo on 22/10/17.
@@ -25,6 +26,11 @@ public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
     }
 
     @Override
+    protected Map<String, Object> getComoMapa(PublicacionProducto entidad) {
+        return null;
+    }
+
+    @Override
     protected PublicacionProducto getFromResultSet(ResultSet resultSet) {
         try {
             ItemProducto itemProducto = new ItemProducto(resultSet.getFloat("precio"),
@@ -34,6 +40,7 @@ public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
             gtiaExtendida.setFechaDeCompra(resultSet.getDate("fechaGarantia"));
             Producto producto = new Producto(itemProducto, gtiaExtendida);
             PublicacionProducto publicacion = new PublicacionProducto(producto);
+            publicacion.setId(resultSet.getInt("idOperacion"));
             return publicacion;
         } catch (SQLException e) {
             e.printStackTrace();

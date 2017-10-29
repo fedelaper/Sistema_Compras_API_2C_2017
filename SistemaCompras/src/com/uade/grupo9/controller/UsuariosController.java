@@ -4,14 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.uade.grupo9.model.Usuario;
+import com.uade.grupo9.persistencia.UsuarioDao;
 
 public class UsuariosController {
-
+	private UsuarioDao dao;
 	private List<Usuario> usuarios;
 	private Usuario currentUser;
-	
-	public UsuariosController(){
+	private static UsuariosController instance;
+
+	private UsuariosController(){
 		this.usuarios = new ArrayList<Usuario>();
+		dao = new UsuarioDao();
+	}
+
+	private UsuariosController get(){
+		if(instance ==null){
+			instance = new UsuariosController();
+		}
+		return instance;
 	}
 	
 	public List<Usuario> getUsuarios() {

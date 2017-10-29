@@ -5,6 +5,7 @@ import com.uade.grupo9.model.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 /**
  * Created by pablo on 22/10/17.
@@ -25,6 +26,11 @@ public class PublicacionServicioDAO extends AbstractDao<PublicacionServicio> {
     }
 
     @Override
+    protected Map<String, Object> getComoMapa(PublicacionServicio entidad) {
+        return null;
+    }
+
+    @Override
     protected PublicacionServicio getFromResultSet(ResultSet resultSet) {
         try {
             ItemServicio itemServicio = new ItemServicio(resultSet.getString("descripcion"),
@@ -33,6 +39,7 @@ public class PublicacionServicioDAO extends AbstractDao<PublicacionServicio> {
             Comision comision = new Comision(getContratacion(contratacionAbono));
             Servicio servicio = new Servicio(itemServicio, comision);
             PublicacionServicio publicacion = new PublicacionServicio(resultSet.getFloat("precio"), servicio);
+            publicacion.setId(resultSet.getInt("idOperacion"));
             return publicacion;
         } catch (SQLException e) {
             e.printStackTrace();

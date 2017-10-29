@@ -3,7 +3,7 @@ package com.uade.grupo9.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public class Usuario extends Entidad{
 
 	private String nombre;
 	private String apellido;

@@ -3,7 +3,7 @@ package com.uade.grupo9.model;
 import java.util.Base64;
 import java.util.Date;
 
-public abstract class Operacion {
+public abstract class Operacion extends Entidad{
 
 	private String titulo;
 	private String descripcion;
@@ -57,5 +57,4 @@ public abstract class Operacion {
 	public void setFormaDePago(Venta formaDePago) {
 		this.formaDePago = formaDePago;
 	}
-	
 }
