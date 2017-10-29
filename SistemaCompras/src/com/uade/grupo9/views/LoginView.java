@@ -44,7 +44,6 @@ public class LoginView extends javax.swing.JFrame {
 		}
 	}
 
-
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
@@ -69,6 +68,7 @@ public class LoginView extends javax.swing.JFrame {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			this.setAutoRequestFocus(false);
 			this.setTitle("Venta y subasta de productos y servicios");
+			getContentPane().setBackground(new java.awt.Color(255,255,255));
 			{
 				DispatcherViewTitle = new JTextPane();
 				getContentPane().add(DispatcherViewTitle, BorderLayout.NORTH);
@@ -82,6 +82,7 @@ public class LoginView extends javax.swing.JFrame {
 				jPanel1 = new JPanel();
 				getContentPane().add(jPanel1, BorderLayout.EAST);
 				jPanel1.setPreferredSize(new java.awt.Dimension(297, 116));
+				jPanel1.setBackground(new java.awt.Color(255,255,255));
 				{
 					DispatcherViewUser = new JTextField();
 					jPanel1.add(DispatcherViewUser);
@@ -91,7 +92,6 @@ public class LoginView extends javax.swing.JFrame {
 				{
 					DispatcherViewPassword = new JPasswordField();
 					jPanel1.add(DispatcherViewPassword);
-					DispatcherViewPassword.setText("Clave");
 					DispatcherViewPassword.setToolTipText("Clave");
 					DispatcherViewPassword.setPreferredSize(new java.awt.Dimension(135, 29));
 				}
@@ -104,7 +104,7 @@ public class LoginView extends javax.swing.JFrame {
 					    if(!loginController.validarFormatoContraseniaUsuario(DispatcherViewPassword.getText())){
 					    	JOptionPane.showMessageDialog(null, "Contraseña inválida. La misma debe cumplir los siguientes requisitos: \n - Tener de 8 a 20 caracteres. \n - Tener al menos un carácter numérico y al menos un carácter mayúscula");
 					    }else{
-					    	
+					    	new InicioView(DispatcherViewUser.getText());
 					    }
 					});
 					}

@@ -6,17 +6,16 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.uade.grupo9.controller.UsuariosController;
-import com.uade.grupo9.model.Contrasenia;
+import com.uade.grupo9.controller.PublicacionController;
 import com.uade.grupo9.model.GtiaExtendida;
 import com.uade.grupo9.model.ItemProducto;
 import com.uade.grupo9.model.Producto;
 
-public class UsuariosControllerTest {
+public class PublicacionControllerTest {
 
 	@Test
 	public void altaProductosRepetidos() {
-		UsuariosController uController = new UsuariosController();
+		PublicacionController uController = new PublicacionController();
 		ItemProducto iProd = new ItemProducto(222,"PS4");
 		GtiaExtendida gtia = new GtiaExtendida();
 		Producto producto = new Producto(iProd,gtia);
@@ -29,7 +28,7 @@ public class UsuariosControllerTest {
 
 	@Test
 	public void altaProductosDiferentes() {
-		UsuariosController uController = new UsuariosController();
+		PublicacionController uController = new PublicacionController();
 		ItemProducto iProd = new ItemProducto(222,"PS4");
 		GtiaExtendida gtia = new GtiaExtendida();
 		Producto producto = new Producto(iProd,gtia);
@@ -44,7 +43,7 @@ public class UsuariosControllerTest {
 	
 	@Test
 	public void bajaProductos(){
-		UsuariosController uController = new UsuariosController();
+		PublicacionController uController = new PublicacionController();
 		ItemProducto iProd = new ItemProducto(222,"PS4");
 		GtiaExtendida gtia = new GtiaExtendida();
 		Producto producto = new Producto(iProd,gtia);

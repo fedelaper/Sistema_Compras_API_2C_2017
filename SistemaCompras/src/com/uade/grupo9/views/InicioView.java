@@ -1,12 +1,26 @@
 package com.uade.grupo9.views;
 import java.awt.BorderLayout;
-import javax.swing.JFileChooser;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 
 import javax.swing.WindowConstants;
+
+import com.uade.grupo9.controller.LoginController;
+import com.uade.grupo9.controller.UsuariosController;
+
 import javax.swing.SwingUtilities;
 
 
@@ -22,32 +36,42 @@ import javax.swing.SwingUtilities;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class InicioView extends javax.swing.JFrame {
+public class InicioView extends JFrame {
+
+	{
+		//Set Look & Feel
+		try {
+			javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	private JMenuBar jMenuBar1;
 	private JMenu jMenu1;
 	private JMenuItem jMenuComprar;
 	private JMenuItem jMenuVender;
+	private UsuariosController uController;
+	private JLabel jLabel_IL;
 
-	/**
-	* Auto-generated main method to display this JFrame
-	*/
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				InicioView inst = new InicioView();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
-	
-	public InicioView() {
+	public InicioView(String usuario) {
 		super();
-		initGUI();
+		uController = new UsuariosController();
+		if(!uController.existeUsuario(usuario)){
+			JOptionPane.showMessageDialog(null, "Usuario " + usuario + " inexistente.");
+		}else{
+			uController.setCurrentUser(usuario);
+			//oculto frame de login
+			JFrame.getFrames()[0].setVisible(false);
+			initGUI();
+		}
+		
 	}
 	
 	private void initGUI() {
 		try {
+			// Load the background image
+            BufferedImage img = ImageIO.read(new File(System.getProperty("user.dir") + "\\img\\imagen.jpg"));
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
 				jMenuBar1 = new JMenuBar();
@@ -63,15 +87,26 @@ public class InicioView extends javax.swing.JFrame {
 						jMenuVender = new JMenuItem();
 						jMenu1.add(jMenuVender);
 						jMenuVender.setText("Vender");
+						jMenuVender.addActionListener((ActionEvent event) -> {
+							this.setVisible(false);
+						    new VentaView(uController);
+						});
 					}
 				}
 			}
 			pack();
-			this.setSize(552, 438);
+			this.setSize(398, 361);
+			this.setVisible(true);
+			this.setTitle("Inicio");
+			{
+				jLabel_IL = new JLabel(new ImageIcon(img));
+				this.setContentPane(jLabel_IL);
+				jLabel_IL.setPreferredSize(new java.awt.Dimension(419, 306));
+			}
 		} catch (Exception e) {
 		    //add your error handling code here
 			e.printStackTrace();
 		}
 	}
-
+	
 }
