@@ -49,8 +49,10 @@ public class InicioView extends JFrame {
 
 	private JMenuBar jMenuBar1;
 	private JMenu jMenu1;
-	private JMenuItem jMenuComprar;
-	private JMenuItem jMenuVender;
+	private JMenuItem jMenuSubastarProducto;
+	private JMenuItem jMenuVenderProducto;
+	private JMenuItem jMenuSubastarServicio;
+	private JMenuItem jMenuVenderServicio;
 	private JLabel jLabel_IL;
 
 	public InicioView(String usuario) {
@@ -62,6 +64,7 @@ public class InicioView extends JFrame {
 			//oculto frame de login
 			JFrame.getFrames()[0].setVisible(false);
 			initGUI();
+			this.setTitle("Usuario: " + uController.getCurrentUser().getNombreUsuario().toUpperCase() + " ( " + uController.getCurrentUser().getNombre().toUpperCase() + " " + uController.getCurrentUser().getApellido().toUpperCase() + " ) - Inicio");
 		}
 		
 	}
@@ -79,23 +82,45 @@ public class InicioView extends JFrame {
 					jMenuBar1.add(jMenu1);
 					jMenu1.setText("Operar");
 					{
-						jMenuComprar = new JMenuItem();
-						jMenu1.add(jMenuComprar);
-						jMenuComprar.setText("Comprar");
-						jMenuVender = new JMenuItem();
-						jMenu1.add(jMenuVender);
-						jMenuVender.setText("Vender");
-						jMenuVender.addActionListener((ActionEvent event) -> {
+						jMenuSubastarProducto = new JMenuItem();
+						jMenu1.add(jMenuSubastarProducto);
+						jMenuSubastarProducto.setText("Subastar producto");
+						jMenuSubastarProducto.addActionListener((ActionEvent event) -> {
 							this.setVisible(false);
-						    new VentaView();
+						    new VentaView("Producto", "Subasta");
+						});
+						jMenuVenderProducto = new JMenuItem();
+						jMenu1.add(jMenuVenderProducto);
+						jMenuVenderProducto.setText("Vender producto");
+						jMenuVenderProducto.addActionListener((ActionEvent event) -> {
+							this.setVisible(false);
+						    new VentaView("Producto", "Venta");
+						});
+						jMenuSubastarServicio = new JMenuItem();
+						jMenu1.add(jMenuSubastarServicio);
+						jMenuSubastarServicio.setText("Subastar servicio");
+						jMenuSubastarServicio.addActionListener((ActionEvent event) -> {
+							this.setVisible(false);
+						    new VentaView("Servicio", "Subasta");
+						});
+						jMenuVenderServicio = new JMenuItem();
+						jMenu1.add(jMenuVenderServicio);
+						jMenuVenderServicio.setText("Vender servicio");
+						jMenuVenderServicio.addActionListener((ActionEvent event) -> {
+							this.setVisible(false);
+						    new VentaView("Servicio", "Venta");
 						});
 					}
 				}
 			}
 			pack();
 			this.setSize(398, 361);
+			// Establecer NO dimensionable la ventana
+			this.setResizable(false);
+			// Ubicar la ventana en el centro de la pantalla
+			this.setLocationRelativeTo(null);
+			
 			this.setVisible(true);
-			this.setTitle("Inicio");
 			{
 				jLabel_IL = new JLabel(new ImageIcon(img));
 				this.setContentPane(jLabel_IL);

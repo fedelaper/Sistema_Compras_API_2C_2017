@@ -22,7 +22,4 @@ public class ItemServicio {
 		this.detalle = detalle;
 		this.precio = precio;
 	}
-	
-	
-	
 }
