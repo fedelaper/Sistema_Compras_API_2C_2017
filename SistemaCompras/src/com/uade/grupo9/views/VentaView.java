@@ -7,7 +7,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ButtonGroup;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -16,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.uade.grupo9.controller.PublicacionController;
 import com.uade.grupo9.controller.UsuariosController;
 
 
@@ -252,24 +253,26 @@ public class VentaView extends JFrame {
 						return;
 					}
 					
-					if(!chkGarantiaExtendida.isSelected()){
-						
-						if(txtGarantiaCantidad.getText().equals("")) {
-							JOptionPane.showMessageDialog(null,
-									"Por favor ingrese el tiempo de garantía.");
-							txtGarantiaCantidad.requestFocusInWindow();
-							return;
-						}
-						
-						if(!txtGarantiaCantidad.getText().matches("^[0-9]+$")){
-							JOptionPane.showMessageDialog(null,
-									"Por favor ingrese sólo números en el tiempo de garantía.");
-							txtGarantiaCantidad.setText("");
-							txtGarantiaCantidad.requestFocusInWindow();
-							return;
-						}
-						
+					if(txtGarantiaCantidad.getText().equals("")) {
+						JOptionPane.showMessageDialog(null,
+								"Por favor ingrese el tiempo de garantía.");
+						txtGarantiaCantidad.requestFocusInWindow();
+						return;
 					}
+					
+					if(!txtGarantiaCantidad.getText().matches("^[0-9]+$")){
+						JOptionPane.showMessageDialog(null,
+								"Por favor ingrese sólo números en el tiempo de garantía.");
+						txtGarantiaCantidad.setText("");
+						txtGarantiaCantidad.requestFocusInWindow();
+						return;
+					}
+				}
+				
+				PublicacionController pController = new PublicacionController();
+				
+				if(tipoPublicacion == "Servicio" && tipoOperacion == "Venta"){
+					pController.altaPublicacionServicio(txtDescripcion.getText(), txtNombre.getText(), chkContratacionUnicaVez.isSelected() ? "Por unica vez" : "Por abono", UsuariosController.get().getCurrentUser().getNombreUsuario(), Float.parseFloat(txtPrecio.getText()), chkEfectivo.isSelected(), chkTarjeta.isSelected(), chkTransferencia.isSelected() );
 				}
 				
 				closeWin();

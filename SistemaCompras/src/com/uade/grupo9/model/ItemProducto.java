@@ -2,6 +2,7 @@ package com.uade.grupo9.model;
 
 public class ItemProducto {
 
+	private String nombre;
 	private float precio;
 	private String detalle;
 	
@@ -21,6 +22,12 @@ public class ItemProducto {
 		super();
 		this.precio = precio;
 		this.detalle = detalle;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	

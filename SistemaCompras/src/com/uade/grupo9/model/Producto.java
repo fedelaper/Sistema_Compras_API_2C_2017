@@ -3,7 +3,7 @@ package com.uade.grupo9.model;
 public class Producto {
 
 	private ItemProducto itemProducto;
-	private GtiaExtendida gtiaExtendida;
+	private Garantia garantia;
 	
 	public ItemProducto getItemProducto() {
 		return itemProducto;
@@ -11,16 +11,10 @@ public class Producto {
 	public void setItemProducto(ItemProducto itemProducto) {
 		this.itemProducto = itemProducto;
 	}
-	public GtiaExtendida getGtiaExtendida() {
-		return gtiaExtendida;
-	}
-	public void setGtiaExtendida(GtiaExtendida gtiaExtendida) {
-		this.gtiaExtendida = gtiaExtendida;
-	}
-	public Producto(ItemProducto itemProducto, GtiaExtendida gtiaExtendida) {
+	public Producto(ItemProducto itemProducto, Garantia garantia) {
 		super();
 		this.itemProducto = itemProducto;
-		this.gtiaExtendida = gtiaExtendida;
+		this.setGarantia(garantia);
 	}
 	
 	@Override
@@ -28,9 +22,15 @@ public class Producto {
 		//Sobreescribo metodo equals para cuando se eval�e dentro del m�todo contains de una lista, tome el criterio que quiero.
         if(o instanceof Producto){
             Producto toCompare = (Producto) o;
-            return itemProducto.getDetalle().equals(toCompare.itemProducto.getDetalle());
+            return itemProducto.getNombre().equals(toCompare.itemProducto.getNombre());
         }
         return false;
     }
+	public Garantia getGarantia() {
+		return garantia;
+	}
+	public void setGarantia(Garantia garantia) {
+		this.garantia = garantia;
+	}
 	
 }

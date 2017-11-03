@@ -2,6 +2,7 @@ package com.uade.grupo9.persistencia;
 
 import com.uade.grupo9.model.*;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,9 @@ public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
     private static String TABLA = "dbo.Producto";
     private static String QUERY_COMUN = "select * from " + TABLA + " s inner join dbo.Operacion o on " +
             "s.idOperacion = o.idOperacion ";
-
+    private static String QUERY_INSERT_PRODUCTO = "INSERT INTO " + TABLA + "([tiempoGarantia],[detalle],[Nombre],[tipoGarantia])VALUES(?,?,?,?,?)GO";
+    private static String QUERY_INSERT_PUBLICACION = "INSERT INTO [dbo].[Publicaciones] ([nombreUsuario] ,[nombreProductoServicio],[tipo],[fechaPublicacion],[fechaHastaVigenciaPublicacion],[precio],[efectivo],[tarjeta],[transferencia])VALUES(?,?,?,?,?,?,?,?,?) GO";
+    
     public PublicacionProductoDAO() {
         super(TABLA);
     }
@@ -35,7 +38,7 @@ public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
         try {
             ItemProducto itemProducto = new ItemProducto(resultSet.getFloat("precio"),
                     resultSet.getString("descripcion"));
-            GtiaExtendida gtiaExtendida = new GtiaExtendida();
+            Garantia gtiaExtendida = new Garantia();
             gtiaExtendida.setCantidadDeDias(resultSet.getInt("cantMesesGtia"));
             gtiaExtendida.setFechaDeCompra(resultSet.getDate("fechaGarantia"));
             Producto producto = new Producto(itemProducto, gtiaExtendida);
@@ -52,6 +55,39 @@ public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
     public PublicacionProducto getById(Integer id) {
         PreparedStatement statement = getStatement(QUERY_COMUN + " where o.idOperacion = ?");
         return getById(statement, id);
+    }
+    
+    public void saveProducto(Producto producto){
+    	PreparedStatement statement = getStatement(QUERY_INSERT_PRODUCTO);
+    	try {
+			statement.setString(1, Integer.toString(producto.getGarantia().getCantidadDeDias()));
+			statement.setString(2, producto.getItemProducto().getDetalle());
+			statement.setString(3, producto.getItemProducto().getNombre());
+			statement.setString(4, producto.getGarantia().getTipo());
+			correrQuery(statement);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public void savePublicacion(PublicacionProducto pServicio, String nomUsuario, String nombreProducto){
+    	PreparedStatement statement = getStatement(QUERY_INSERT_PUBLICACION);
+    	try {
+			statement.setString(1, nomUsuario);
+			statement.setString(2, nombreProducto);
+			statement.setString(3, "Producto");
+			statement.setDate(4, (Date) pServicio.getFecha());
+			statement.setDate(5, (Date) pServicio.getFechaVencimiento());
+			statement.setFloat(6, pServicio.getPrecio());
+			statement.setString(7, pServicio.getFormasDePago().contains(FormasDePago.Efectivo) ? "1" : "0");
+			statement.setString(8, pServicio.getFormasDePago().contains(FormasDePago.TarjetaCredito) ? "1" : "0");
+			statement.setString(9, pServicio.getFormasDePago().contains(FormasDePago.TransferenciaBancaria) ? "1" : "0");
+			correrQuery(statement);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }

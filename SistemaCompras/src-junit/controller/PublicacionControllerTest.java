@@ -1,13 +1,11 @@
 package controller;
 
-import java.util.Calendar;
-import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.uade.grupo9.controller.PublicacionController;
-import com.uade.grupo9.model.GtiaExtendida;
+import com.uade.grupo9.model.Garantia;
 import com.uade.grupo9.model.ItemProducto;
 import com.uade.grupo9.model.Producto;
 
@@ -17,7 +15,7 @@ public class PublicacionControllerTest {
 	public void altaProductosRepetidos() {
 		PublicacionController uController = new PublicacionController();
 		ItemProducto iProd = new ItemProducto(222,"PS4");
-		GtiaExtendida gtia = new GtiaExtendida();
+		Garantia gtia = new Garantia();
 		Producto producto = new Producto(iProd,gtia);
 		uController.altaProducto(producto);
 		Assert.assertTrue(uController.getProductos().size() == 1);
@@ -30,12 +28,12 @@ public class PublicacionControllerTest {
 	public void altaProductosDiferentes() {
 		PublicacionController uController = new PublicacionController();
 		ItemProducto iProd = new ItemProducto(222,"PS4");
-		GtiaExtendida gtia = new GtiaExtendida();
+		Garantia gtia = new Garantia();
 		Producto producto = new Producto(iProd,gtia);
 		uController.altaProducto(producto);
 		Assert.assertTrue(uController.getProductos().size() == 1);
 		ItemProducto iProd2 = new ItemProducto(222,"PS3");
-		GtiaExtendida gtia2 = new GtiaExtendida();
+		Garantia gtia2 = new Garantia();
 		Producto producto2 = new Producto(iProd2,gtia2);
 		uController.altaProducto(producto2);
 		Assert.assertTrue(uController.getProductos().size() == 2);
@@ -45,12 +43,12 @@ public class PublicacionControllerTest {
 	public void bajaProductos(){
 		PublicacionController uController = new PublicacionController();
 		ItemProducto iProd = new ItemProducto(222,"PS4");
-		GtiaExtendida gtia = new GtiaExtendida();
+		Garantia gtia = new Garantia();
 		Producto producto = new Producto(iProd,gtia);
 		uController.altaProducto(producto);
 		Assert.assertTrue(uController.getProductos().size() == 1);
 		ItemProducto iProd2 = new ItemProducto(222,"PS3");
-		GtiaExtendida gtia2 = new GtiaExtendida();
+		Garantia gtia2 = new Garantia();
 		Producto producto2 = new Producto(iProd2,gtia2);
 		uController.altaProducto(producto2);
 		Assert.assertTrue(uController.getProductos().size() == 2);

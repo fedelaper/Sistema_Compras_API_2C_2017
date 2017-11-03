@@ -3,7 +3,8 @@ package com.uade.grupo9.model;
 public class ItemServicio {
 
 	private String detalle;
-	private float precio;
+	private String nombre;
+	private String tipoContratacion;
 	
 	public String getDetalle() {
 		return detalle;
@@ -11,15 +12,22 @@ public class ItemServicio {
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
-	public float getPrecio() {
-		return precio;
-	}
-	public void setPrecio(float precio) {
-		this.precio = precio;
-	}
-	public ItemServicio(String detalle, float precio) {
+	public ItemServicio(String detalle, String nombre, String tipoContratacion) {
 		super();
 		this.detalle = detalle;
-		this.precio = precio;
+		this.nombre = nombre;
+		this.tipoContratacion = tipoContratacion;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getTipoContratacion() {
+		return tipoContratacion;
+	}
+	public void setTipoContratacion(String tipoContratacion) {
+		this.tipoContratacion = tipoContratacion;
 	}
 }
