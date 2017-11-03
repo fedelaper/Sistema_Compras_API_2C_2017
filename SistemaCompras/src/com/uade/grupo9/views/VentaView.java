@@ -27,7 +27,7 @@ public class VentaView extends javax.swing.JFrame {
 	 * @param inicioView 
 	*/
 		
-	public VentaView(UsuariosController uController) {
+	public VentaView() {
 		super();
 		initGUI();
 	}

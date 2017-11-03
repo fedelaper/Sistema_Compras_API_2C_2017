@@ -7,17 +7,17 @@ import com.uade.grupo9.model.Usuario;
 import com.uade.grupo9.persistencia.UsuarioDao;
 
 public class UsuariosController {
-	private UsuarioDao dao;
-	private List<Usuario> usuarios;
-	private Usuario currentUser;
+	private static UsuarioDao dao;
+	private static List<Usuario> usuarios;
+	private static Usuario currentUser;
 	private static UsuariosController instance;
 
 	private UsuariosController(){
-		this.usuarios = new ArrayList<Usuario>();
+		UsuariosController.usuarios = new ArrayList<Usuario>();
 		dao = new UsuarioDao();
 	}
 
-	private UsuariosController get(){
+	public static UsuariosController get(){
 		if(instance ==null){
 			instance = new UsuariosController();
 		}
@@ -25,13 +25,20 @@ public class UsuariosController {
 	}
 	
 	public List<Usuario> getUsuarios() {
+		if(usuarios == null || usuarios.size() == 0){
+			usuarios = dao.getTodos();
+		}
 		return usuarios;
 	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	
+	public Usuario getUsuario(String nomUsuario) {
+		try{
+		return dao.getByNomUsuario(nomUsuario);
+		}catch(Exception e){
+			return null;
+		}
 	}
-
+	
 	public void altaUsuario(Usuario usuario) throws Exception{
 		
 		if(!this.usuarios.contains(usuario))
@@ -79,17 +86,15 @@ public class UsuariosController {
 	
 
 	public boolean existeUsuario(String nombreUsuario) {
-		Usuario usuario = new Usuario(nombreUsuario);
-		return getUsuarios().contains(usuario);
+		currentUser = getUsuario(nombreUsuario);
+		
+		return currentUser != null;
 	}
 
 	public Usuario getCurrentUser() {
 		return currentUser;
 	}
-
-	public void setCurrentUser(String  currentUserName) {
-		this.currentUser = new Usuario(currentUserName);
-	}
+	
 	
 	
 

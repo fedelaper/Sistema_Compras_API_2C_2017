@@ -51,16 +51,14 @@ public class InicioView extends JFrame {
 	private JMenu jMenu1;
 	private JMenuItem jMenuComprar;
 	private JMenuItem jMenuVender;
-	private UsuariosController uController;
 	private JLabel jLabel_IL;
 
 	public InicioView(String usuario) {
 		super();
-		uController = new UsuariosController();
+		UsuariosController uController = UsuariosController.get();
 		if(!uController.existeUsuario(usuario)){
 			JOptionPane.showMessageDialog(null, "Usuario " + usuario + " inexistente.");
 		}else{
-			uController.setCurrentUser(usuario);
 			//oculto frame de login
 			JFrame.getFrames()[0].setVisible(false);
 			initGUI();
@@ -89,7 +87,7 @@ public class InicioView extends JFrame {
 						jMenuVender.setText("Vender");
 						jMenuVender.addActionListener((ActionEvent event) -> {
 							this.setVisible(false);
-						    new VentaView(uController);
+						    new VentaView();
 						});
 					}
 				}

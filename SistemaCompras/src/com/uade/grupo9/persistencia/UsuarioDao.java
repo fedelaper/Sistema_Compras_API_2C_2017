@@ -57,7 +57,7 @@ public class UsuarioDao extends AbstractDao<Usuario> {
     }
 
     public Usuario getByNomUsuario(String nomUsuario) {
-        PreparedStatement statement = getStatement("select * from " + TABLA + " where nomUsuario = ?");
+        PreparedStatement statement = getStatement("select * from " + TABLA + " where nomUsuario=?");
         try {
             statement.setString(1, nomUsuario);
             return getFromResultSet(correrQuery(statement), Boolean.TRUE);

@@ -1,13 +1,15 @@
+
 CREATE TABLE dbo.Usuario
 (
 	idUsuario INT IDENTITY(1,1),
 	nomUsuario VARCHAR(50) PRIMARY KEY,
 	nombre VARCHAR(100),
+	apellido VARCHAR(100),
+	dni VARCHAR(12),
 	domicilio VARCHAR (100),
 	mail VARCHAR(100),
-	contraseña VARCHAR(40),
-	fechaUpdatePass DATETIME,
-	isSubasta BIT
+	contrasena VARCHAR(40),
+	fechaUpdatePass DATETIME
 )
 GO
 
