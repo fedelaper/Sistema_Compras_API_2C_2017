@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -50,18 +51,26 @@ public class VentaView extends JFrame {
 	private JLabel lblNombre;
 	private JCheckBox chkTransferencia;
 	private JCheckBox chkEfectivo;
+	private JCheckBox chkContratacionUnicaVez;
+	private JCheckBox chkContratacionPorAbono;
+	private JCheckBox chkGarantiaExtendida;
+	private JCheckBox chkGarantiaMensual;
+	private JCheckBox chkGarantiaAnual;
 	private JButton Volver;
 	private JCheckBox chkTarjeta;
 	private JLabel lblDescripcion;
+	private JLabel lblGarantiaCantidad;
 	private JLabel lblPrecio;
-	private JLabel lblMail;
+	private JLabel lblFormasDePago;
+	private JLabel lblContratacion;
+	private JLabel lblGarantia;
 	private JTextField txtNombre;
 	private JTextField txtDescripcion;
 	private JTextField txtPrecio;
+	private JTextField txtGarantiaCantidad;
 	private String tipoOperacion;
 	private String tipoPublicacion;
 	private String stepDescription;
-	private int id;
 
 	public VentaView(String tipoPublicacion, String tipoOperacion) {
 
@@ -72,7 +81,7 @@ public class VentaView extends JFrame {
 		UsuariosController uController = UsuariosController.get();
 		this.setTitle("Usuario: " + uController.getCurrentUser().getNombreUsuario().toUpperCase() + " ( " + uController.getCurrentUser().getNombre().toUpperCase() + " " + uController.getCurrentUser().getApellido().toUpperCase() + " ) - " + this.stepDescription);
 		// Establecer la dimension de la ventana (ancho, alto)
-		this.setSize(839, 393);
+		this.setSize(839, 493);
 		// Establecer NO dimensionable la ventana
 		this.setResizable(false);
 		// Ubicar la ventana en el centro de la pantalla
@@ -145,18 +154,52 @@ public class VentaView extends JFrame {
 		gbc.weightx = 0.9;
 		pnlCentro.add(txtPrecio, gbc); // agregar el textField al panel contenedor
 
-		lblMail = new JLabel("Formas de pago:");
-		lblMail.setHorizontalAlignment(JLabel.RIGHT);
+		lblFormasDePago = new JLabel("Formas de pago:");
+		lblFormasDePago.setHorizontalAlignment(JLabel.RIGHT);
 		gbc.gridx = 0; // número columna
 		gbc.gridy = 3; // número fila
 		gbc.weightx = 0.1;
-		pnlCentro.add(lblMail, gbc); // agregar el label al panel contenedor
+		pnlCentro.add(lblFormasDePago, gbc); // agregar el label al panel contenedor
 
 		gbc.gridx = 1; // número columna
 		gbc.gridy = 3; // número fila
 		gbc.weightx = 0.9;
+		
+		int cantidadFilas = 5;
+		if(tipoPublicacion == "Servicio"){
+			lblContratacion = new JLabel("Tipo contratación: ");
+			lblContratacion.setHorizontalAlignment(JLabel.RIGHT);
+			gbc.gridx = 0; // número columna
+			gbc.gridy = 4; // número fila
+			gbc.weightx = 0.1;
+			pnlCentro.add(lblContratacion, gbc); // agregar el label al panel contenedor
+		}else{
+			lblGarantia = new JLabel("Garantía: ");
+			lblGarantia.setHorizontalAlignment(JLabel.RIGHT);
+			gbc.gridx = 0; // número columna
+			gbc.gridy = 4; // número fila
+			gbc.weightx = 0.1;
+			pnlCentro.add(lblGarantia, gbc); // agregar el label al panel contenedor
+			cantidadFilas = 6;
+			
+			lblGarantiaCantidad = new JLabel("Garantía tiempo:");
+			lblGarantiaCantidad.setHorizontalAlignment(JLabel.RIGHT);
+			gbc.gridx = 0; // número columna
+			gbc.gridy = 5; // número fila
+			gbc.weightx = 0.1;
+			pnlCentro.add(lblGarantiaCantidad, gbc); // agregar el label al panel contenedor
 
-		btnGuardar = new JButton("Publicar");
+			txtGarantiaCantidad = new JTextField();
+			gbc.gridx = 1; // número columna
+			gbc.gridy = 5; // número fila
+			gbc.weightx = 0.9;
+			pnlCentro.add(txtGarantiaCantidad, gbc); // agregar el textField al panel contenedor
+			
+		}
+		
+
+		
+		btnGuardar = new JButton("Publicar");		
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtNombre.getText().equals("")) {
@@ -182,7 +225,7 @@ public class VentaView extends JFrame {
 					return;
 				}
 				
-				if(!txtPrecio.getText().matches("\\d")){
+				if(!txtPrecio.getText().matches("^[0-9]+$")){
 					JOptionPane.showMessageDialog(null,
 							"Por favor ingrese sólo números en el precio");
 					txtPrecio.setText("");
@@ -196,22 +239,61 @@ public class VentaView extends JFrame {
 					return;
 				}
 				
-				
+				if(tipoPublicacion == "Servicio"){
+					if(!chkContratacionUnicaVez.isSelected() && !chkContratacionPorAbono.isSelected()){
+						JOptionPane.showMessageDialog(null,
+								"Por favor seleccione un tipo de contratación.");
+						return;
+					}
+				}else{
+					if(!chkGarantiaExtendida.isSelected() && !chkGarantiaMensual.isSelected() && !chkGarantiaAnual.isSelected()){
+						JOptionPane.showMessageDialog(null,
+								"Por favor seleccione un tipo de garantía.");
+						return;
+					}
+					
+					if(!chkGarantiaExtendida.isSelected()){
+						
+						if(txtGarantiaCantidad.getText().equals("")) {
+							JOptionPane.showMessageDialog(null,
+									"Por favor ingrese el tiempo de garantía.");
+							txtGarantiaCantidad.requestFocusInWindow();
+							return;
+						}
+						
+						if(!txtGarantiaCantidad.getText().matches("^[0-9]+$")){
+							JOptionPane.showMessageDialog(null,
+									"Por favor ingrese sólo números en el tiempo de garantía.");
+							txtGarantiaCantidad.setText("");
+							txtGarantiaCantidad.requestFocusInWindow();
+							return;
+						}
+						
+					}
+				}
 				
 				closeWin();
 			}
 		});
 
 		gbc.gridx = 0; // número columna
-		gbc.gridy = 4; // número fila
+		gbc.gridy = cantidadFilas; // número fila
 		gbc.gridwidth = 2; // numero de columnas de ancho
 		gbc.fill = GridBagConstraints.NONE; // rellenar la celda en ambos sentidos (horizontal y vertical)
-		pnlCentro.add(btnGuardar, gbc); // agregar el textField al panel contenedor
+		
 		pnlCentro.add(getForPagTar(), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 		pnlCentro.add(getJCheckBox1(), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 		pnlCentro.add(getTransferencia(), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-		pnlCentro.add(getVolver(), new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-
+		pnlCentro.add(btnGuardar, gbc); // agregar el textField al panel contenedor
+		pnlCentro.add(getVolver(), new GridBagConstraints(1, gbc.gridy, 2, 1, 0.9, 1.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(3, 3, 3, 3), 0, 0));
+		if(tipoPublicacion == "Servicio"){
+			pnlCentro.add(getChkContratacionPorAbono(), new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			pnlCentro.add(getChkContratacionUnicaVez(), new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+		}else{
+			pnlCentro.add(getChkGarantiaExtendida(), new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			pnlCentro.add(getChkGarantiaAnual(), new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			pnlCentro.add(getChkGarantiaMensual(), new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+		}
 		return pnlCentro;
 	}
 
@@ -267,6 +349,63 @@ public class VentaView extends JFrame {
 		}
 		return Volver;
 	}
-
+	
+	private JCheckBox getChkContratacionPorAbono() {
+		if(chkContratacionPorAbono == null) {
+			chkContratacionPorAbono = new JCheckBox();
+			chkContratacionPorAbono.setText("PorAbono");
+			chkContratacionPorAbono.addActionListener((ActionEvent event) -> {
+				chkContratacionUnicaVez.setSelected(false);
+			});
+		}
+		return chkContratacionPorAbono;
+	}
+	
+	private JCheckBox getChkContratacionUnicaVez() {
+		if(chkContratacionUnicaVez == null) {
+			chkContratacionUnicaVez = new JCheckBox();
+			chkContratacionUnicaVez.setText("Por única vez");
+			chkContratacionUnicaVez.addActionListener((ActionEvent event) -> {
+				chkContratacionPorAbono.setSelected(false);
+			});
+		}
+		return chkContratacionUnicaVez;
+	}
+	
+	private JCheckBox getChkGarantiaExtendida() {
+		if(chkGarantiaExtendida == null) {
+			chkGarantiaExtendida = new JCheckBox();
+			chkGarantiaExtendida.setText("Extendida");
+			chkGarantiaExtendida.addActionListener((ActionEvent event) -> {
+				chkGarantiaMensual.setSelected(false);
+				chkGarantiaAnual.setSelected(false);
+			});
+		}
+		return chkGarantiaExtendida;
+	}
+	
+	private JCheckBox getChkGarantiaMensual() {
+		if(chkGarantiaMensual == null) {
+			chkGarantiaMensual = new JCheckBox();
+			chkGarantiaMensual.setText("Mensual");
+			chkGarantiaMensual.addActionListener((ActionEvent event) -> {
+				chkGarantiaExtendida.setSelected(false);
+				chkGarantiaAnual.setSelected(false);
+			});
+		}
+		return chkGarantiaMensual;
+	}
+	
+	private JCheckBox getChkGarantiaAnual() {
+		if(chkGarantiaAnual == null) {
+			chkGarantiaAnual = new JCheckBox();
+			chkGarantiaAnual.setText("Anual");
+			chkGarantiaAnual.addActionListener((ActionEvent event) -> {
+				chkGarantiaExtendida.setSelected(false);
+				chkGarantiaMensual.setSelected(false);
+			});
+		}
+		return chkGarantiaAnual;
+	}
 }
 

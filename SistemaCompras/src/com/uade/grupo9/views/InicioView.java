@@ -80,7 +80,7 @@ public class InicioView extends JFrame {
 				{
 					jMenu1 = new JMenu();
 					jMenuBar1.add(jMenu1);
-					jMenu1.setText("Operar");
+					jMenu1.setText("Publicar");
 					{
 						jMenuSubastarProducto = new JMenuItem();
 						jMenu1.add(jMenuSubastarProducto);
