@@ -18,10 +18,11 @@ public class ItemProducto {
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
-	public ItemProducto(float precio, String detalle) {
+	public ItemProducto(float precio, String detalle, String nombre) {
 		super();
 		this.precio = precio;
 		this.detalle = detalle;
+		this.nombre = nombre;
 	}
 	public String getNombre() {
 		return nombre;

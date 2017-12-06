@@ -14,7 +14,7 @@ public class PublicacionControllerTest {
 	@Test
 	public void altaProductosRepetidos() {
 		PublicacionController uController = new PublicacionController();
-		ItemProducto iProd = new ItemProducto(222,"PS4");
+		ItemProducto iProd = new ItemProducto(222,"PS4", "asdasd");
 		Garantia gtia = new Garantia();
 		Producto producto = new Producto(iProd,gtia);
 		uController.altaProducto(producto);
@@ -27,12 +27,12 @@ public class PublicacionControllerTest {
 	@Test
 	public void altaProductosDiferentes() {
 		PublicacionController uController = new PublicacionController();
-		ItemProducto iProd = new ItemProducto(222,"PS4");
+		ItemProducto iProd = new ItemProducto(222,"PS4", "asdasd");
 		Garantia gtia = new Garantia();
 		Producto producto = new Producto(iProd,gtia);
 		uController.altaProducto(producto);
 		Assert.assertTrue(uController.getProductos().size() == 1);
-		ItemProducto iProd2 = new ItemProducto(222,"PS3");
+		ItemProducto iProd2 = new ItemProducto(222,"PS3", "asdasd");
 		Garantia gtia2 = new Garantia();
 		Producto producto2 = new Producto(iProd2,gtia2);
 		uController.altaProducto(producto2);
@@ -42,12 +42,12 @@ public class PublicacionControllerTest {
 	@Test
 	public void bajaProductos(){
 		PublicacionController uController = new PublicacionController();
-		ItemProducto iProd = new ItemProducto(222,"PS4");
+		ItemProducto iProd = new ItemProducto(222,"PS4", "asdasd");
 		Garantia gtia = new Garantia();
 		Producto producto = new Producto(iProd,gtia);
 		uController.altaProducto(producto);
 		Assert.assertTrue(uController.getProductos().size() == 1);
-		ItemProducto iProd2 = new ItemProducto(222,"PS3");
+		ItemProducto iProd2 = new ItemProducto(222,"PS3", "asdqweqwe");
 		Garantia gtia2 = new Garantia();
 		Producto producto2 = new Producto(iProd2,gtia2);
 		uController.altaProducto(producto2);

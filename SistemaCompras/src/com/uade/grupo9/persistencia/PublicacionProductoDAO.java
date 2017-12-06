@@ -15,9 +15,8 @@ public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
     private static String TABLA = "dbo.Producto";
     private static String QUERY_COMUN = "select * from " + TABLA + " s inner join dbo.Operacion o on " +
             "s.idOperacion = o.idOperacion ";
-    private static String QUERY_INSERT_PRODUCTO = "INSERT INTO " + TABLA + "([tiempoGarantia],[detalle],[Nombre],[tipoGarantia])VALUES(?,?,?,?,?)GO";
-    private static String QUERY_INSERT_PUBLICACION = "INSERT INTO [dbo].[Publicaciones] ([nombreUsuario] ,[nombreProductoServicio],[tipo],[fechaPublicacion],[fechaHastaVigenciaPublicacion],[precio],[efectivo],[tarjeta],[transferencia])VALUES(?,?,?,?,?,?,?,?,?) GO";
-    
+    private static String QUERY_INSERT_PRODUCTO = "INSERT INTO " + TABLA + "([tiempoGarantia],[detalle],[Nombre],[tipoGarantia])VALUES(?,?,?,?)";
+    private static String QUERY_INSERT_PUBLICACION = "INSERT INTO [dbo].[Publicaciones] ([nombreUsuario] ,[nombreProductoServicio],[tipo],[fechaPublicacion],[fechaHastaVigenciaPublicacion],[precio],[efectivo],[tarjeta],[transferencia]) VALUES(?,?,?,?,?,?,?,?,?)";
     public PublicacionProductoDAO() {
         super(TABLA);
     }
@@ -37,7 +36,7 @@ public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
     protected PublicacionProducto getFromResultSet(ResultSet resultSet) {
         try {
             ItemProducto itemProducto = new ItemProducto(resultSet.getFloat("precio"),
-                    resultSet.getString("descripcion"));
+                    resultSet.getString("descripcion"), resultSet.getString("nombre"));
             Garantia gtiaExtendida = new Garantia();
             gtiaExtendida.setCantidadDeDias(resultSet.getInt("cantMesesGtia"));
             gtiaExtendida.setFechaDeCompra(resultSet.getDate("fechaGarantia"));
@@ -77,8 +76,8 @@ public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
 			statement.setString(1, nomUsuario);
 			statement.setString(2, nombreProducto);
 			statement.setString(3, "Producto");
-			statement.setDate(4, (Date) pServicio.getFecha());
-			statement.setDate(5, (Date) pServicio.getFechaVencimiento());
+			statement.setDate(4, new java.sql.Date(pServicio.getFecha().getTime()));
+			statement.setDate(5, new java.sql.Date(pServicio.getFechaVencimiento().getTime()));
 			statement.setFloat(6, pServicio.getPrecio());
 			statement.setString(7, pServicio.getFormasDePago().contains(FormasDePago.Efectivo) ? "1" : "0");
 			statement.setString(8, pServicio.getFormasDePago().contains(FormasDePago.TarjetaCredito) ? "1" : "0");

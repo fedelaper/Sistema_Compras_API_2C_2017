@@ -1,6 +1,5 @@
 package com.uade.grupo9.model;
 
-import java.util.Date;
 
 /**
  * Created by pablo on 22/10/17.
@@ -15,12 +14,12 @@ public class PublicacionServicio extends Publicacion<Servicio> {
     }
 
     @Override
-    public Servicio getOperacion() {
+    public Servicio getPublicacion() {
         return servicio;
     }
 
     @Override
-    public void setOperacion(Servicio operacion) {
+    public void setPublicacion(Servicio operacion) {
         servicio = operacion;
     }
 

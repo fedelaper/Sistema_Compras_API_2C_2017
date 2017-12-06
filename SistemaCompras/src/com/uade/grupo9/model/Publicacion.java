@@ -1,7 +1,6 @@
 package com.uade.grupo9.model;
 
 import java.util.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Publicacion <T> extends Operacion {
@@ -37,9 +36,9 @@ public abstract class Publicacion <T> extends Operacion {
 	public void setFechaVencimiento(Date fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
-	public abstract T getOperacion();
+	public abstract T getPublicacion();
 
-	public abstract void setOperacion(T operacion);
+	public abstract void setPublicacion(T operacion);
 
 	public List<FormasDePago> getFormasDePago() {
 		return formasDePago;

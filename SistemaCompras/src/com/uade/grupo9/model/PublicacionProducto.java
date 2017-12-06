@@ -12,12 +12,12 @@ public class PublicacionProducto extends Publicacion<Producto> {
     }
 
     @Override
-    public Producto getOperacion() {
+    public Producto getPublicacion() {
         return producto;
     }
 
     @Override
-    public void setOperacion(Producto operacion) {
+    public void setPublicacion(Producto operacion) {
         producto = operacion;
     }
 }

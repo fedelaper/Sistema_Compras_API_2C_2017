@@ -6,10 +6,14 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.uade.grupo9.model.FormasDePago;
+import com.uade.grupo9.model.Garantia;
+import com.uade.grupo9.model.ItemProducto;
 import com.uade.grupo9.model.ItemServicio;
 import com.uade.grupo9.model.Producto;
+import com.uade.grupo9.model.PublicacionProducto;
 import com.uade.grupo9.model.PublicacionServicio;
 import com.uade.grupo9.model.Servicio;
+import com.uade.grupo9.persistencia.PublicacionProductoDAO;
 import com.uade.grupo9.persistencia.PublicacionServicioDAO;
 
 public class PublicacionController {
@@ -17,12 +21,14 @@ public class PublicacionController {
 	private List<Producto> productos;
 	private List<Servicio> servicios;
 	private PublicacionServicioDAO publicacionServicioDAO;
+	private PublicacionProductoDAO publicacionProductoDAO;
 	private int diasVigenciaPublicacion = 7;
 	
 	public PublicacionController(){
 		this.productos = new ArrayList<Producto>();
 		this.servicios = new ArrayList<Servicio>();
 		publicacionServicioDAO = new PublicacionServicioDAO();
+		publicacionProductoDAO = new PublicacionProductoDAO();
 	}
 	
 
@@ -81,6 +87,26 @@ public class PublicacionController {
 		pServicio.setFormasDePago(cargarFormasDePago(formaPagoEfectivo,formaPagoTarjetaCredito,formaPagoTransferenciaBancaria));
 		
 		publicacionServicioDAO.savePublicacion(pServicio, nombreUsuario, servicio.getItemServicio().getNombre());
+		
+	}
+	
+	public void altaPublicacionProducto(String detalle, String nombre, String tipoGarantia, int tiempoGarantia, String nombreUsuario, float precio, boolean formaPagoEfectivo, boolean formaPagoTarjetaCredito, boolean formaPagoTransferenciaBancaria){
+		ItemProducto itemProducto = new ItemProducto(precio, detalle, nombre);
+		Garantia garantia = new Garantia();
+		garantia.setCantidadDeDias(tiempoGarantia);
+		garantia.setTipo(tipoGarantia);
+		Producto producto = new Producto(itemProducto, garantia);
+		publicacionProductoDAO.saveProducto(producto);
+		
+		PublicacionProducto pProducto = new PublicacionProducto(producto); 
+		pProducto.setFecha(new Date());
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		c.add(Calendar.DATE, diasVigenciaPublicacion); 
+		pProducto.setFechaVencimiento(c.getTime());
+		pProducto.setFormasDePago(cargarFormasDePago(formaPagoEfectivo,formaPagoTarjetaCredito,formaPagoTransferenciaBancaria));
+		
+		publicacionProductoDAO.savePublicacion(pProducto, nombreUsuario, producto.getItemProducto().getNombre());
 		
 	}
 	

@@ -273,6 +273,8 @@ public class VentaView extends JFrame {
 				
 				if(tipoPublicacion == "Servicio" && tipoOperacion == "Venta"){
 					pController.altaPublicacionServicio(txtDescripcion.getText(), txtNombre.getText(), chkContratacionUnicaVez.isSelected() ? "Por unica vez" : "Por abono", UsuariosController.get().getCurrentUser().getNombreUsuario(), Float.parseFloat(txtPrecio.getText()), chkEfectivo.isSelected(), chkTarjeta.isSelected(), chkTransferencia.isSelected() );
+				}else if(tipoPublicacion == "Producto" && tipoOperacion == "Venta"){
+					pController.altaPublicacionProducto(txtDescripcion.getText(), txtNombre.getText(), chkGarantiaExtendida.isSelected() ? "Extendida" : chkGarantiaMensual.isSelected() ? "Mensual" : "Anual", Integer.parseInt(txtGarantiaCantidad.getText()), UsuariosController.get().getCurrentUser().getNombreUsuario(), Float.parseFloat(txtPrecio.getText()), chkEfectivo.isSelected(), chkTarjeta.isSelected(), chkTransferencia.isSelected() );
 				}
 				
 				closeWin();
