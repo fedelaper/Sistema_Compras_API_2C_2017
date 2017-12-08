@@ -3,7 +3,7 @@ package com.uade.grupo9.model;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Publicacion <T> extends Operacion {
+public abstract class Publicacion <T>{
 
 	private float precio;
     private Date fecha;

@@ -13,8 +13,8 @@ import java.util.Map;
  */
 public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
     private static String TABLA = "dbo.Producto";
-    private static String QUERY_COMUN = "select * from " + TABLA + " s inner join dbo.Operacion o on " +
-            "s.idOperacion = o.idOperacion ";
+    private static String QUERY_COMUN = "select * from " + TABLA + " s inner join dbo.Publicaciones p on " +
+            "s.Nombre = p.NombreProductoServicio and p.Tipo = 'Producto' ";
     private static String QUERY_INSERT_PRODUCTO = "INSERT INTO " + TABLA + "([tiempoGarantia],[detalle],[Nombre],[tipoGarantia])VALUES(?,?,?,?)";
     private static String QUERY_INSERT_PUBLICACION = "INSERT INTO [dbo].[Publicaciones] ([nombreUsuario] ,[nombreProductoServicio],[tipo],[fechaPublicacion],[fechaHastaVigenciaPublicacion],[precio],[efectivo],[tarjeta],[transferencia]) VALUES(?,?,?,?,?,?,?,?,?)";
     public PublicacionProductoDAO() {
@@ -42,7 +42,6 @@ public class PublicacionProductoDAO extends AbstractDao<PublicacionProducto> {
             gtiaExtendida.setFechaDeCompra(resultSet.getDate("fechaGarantia"));
             Producto producto = new Producto(itemProducto, gtiaExtendida);
             PublicacionProducto publicacion = new PublicacionProducto(producto);
-            publicacion.setId(resultSet.getInt("idOperacion"));
             return publicacion;
         } catch (SQLException e) {
             e.printStackTrace();

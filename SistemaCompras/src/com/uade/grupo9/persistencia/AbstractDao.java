@@ -1,7 +1,5 @@
 package com.uade.grupo9.persistencia;
 
-import com.uade.grupo9.model.Entidad;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +11,7 @@ import java.util.Map;
 /**
  * Created by pablo on 22/10/17.
  */
-public abstract class AbstractDao<T extends Entidad> {
+public abstract class AbstractDao<T> {
     private String tabla;
     private ConexionManager conexionManager;
 
@@ -91,34 +89,7 @@ public abstract class AbstractDao<T extends Entidad> {
             return null;
         }
     }
-
-    public T save(T entidad) {
-        if (entidad.getId() == null) {
-            return insert(entidad);
-        } else {
-            return update(entidad);
-        }
-    }
-
-    protected T insert(T entidad){
-        Integer id = null;
-        try {
-            id = insert(getComoMapa(entidad));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        entidad.setId(id);
-        return entidad;
-    }
-
-    protected T update(T entidad){
-        try {
-            update(getComoMapa(entidad), entidad.getId());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return entidad;
-    }
+    
 
     protected abstract Map<String, Object> getComoMapa(T entidad);
 

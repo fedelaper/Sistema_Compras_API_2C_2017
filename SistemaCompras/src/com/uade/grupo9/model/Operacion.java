@@ -1,16 +1,11 @@
 package com.uade.grupo9.model;
 
 import java.util.Base64;
-import java.util.Date;
 
 public abstract class Operacion extends Entidad{
 
-	private String titulo;
-	private String descripcion;
 	private Base64 imagen;
 	private float comision;
-	private Date fechaDesde;
-	private Date fechaHasta;
 	private Venta formaDePago;
 	
 	public abstract void recibirOferta(float monto, Usuario ofertante);
